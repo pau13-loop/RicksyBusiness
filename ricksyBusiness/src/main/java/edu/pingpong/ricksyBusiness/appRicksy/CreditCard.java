@@ -13,7 +13,7 @@ class CreditCard {
     }
 
     boolean pay(double fee) {
-        if (this.credit > fee) {
+        if (this.credit >= fee) {
             this.credit -= fee;
             return true;
         } else {return false;}
