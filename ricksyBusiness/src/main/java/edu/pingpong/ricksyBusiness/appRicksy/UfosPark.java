@@ -1,6 +1,8 @@
 package edu.pingpong.ricksyBusiness.appRicksy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,8 +52,8 @@ public class UfosPark implements GuestDispatcher{
 
     @Override
     public String toString() {
-        String[] flotaID = this.flota.keySet().toArray(new String[flota.size()]);
-        Arrays.sort(flotaID);
-        return List.of(flotaID).toString();
+        ArrayList<String> ufosIdList = new ArrayList<String>(this.flota.keySet());
+        Collections.sort(ufosIdList);
+        return ufosIdList.toString();
     }
 }
