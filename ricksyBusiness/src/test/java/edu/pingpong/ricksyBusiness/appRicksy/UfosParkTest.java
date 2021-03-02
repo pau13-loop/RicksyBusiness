@@ -1,5 +1,6 @@
 package edu.pingpong.ricksyBusiness.appRicksy;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -31,5 +32,11 @@ public class UfosParkTest {
     @Test
     public void dispatchNullTest() {
         assertEquals(null, ufosPark.getUfoOf("666777999"));
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "[Ovni1, Ovni2, Ovni3]";
+        assertEquals(expected, ufosPark.toString());
     }
 }
