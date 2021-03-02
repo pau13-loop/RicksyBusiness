@@ -42,6 +42,34 @@ public class UfosParkTest {
     }
 
     @Test
+    public void dispatchNotCreditTest() {
+        creditCard.pay(3000);
+        ufosPark.dispatch(creditCard);
+        assertFalse(ufosPark.containsCard("666777999"));
+    }
+
+    @Test
+    public void dispatchAsignedUfoTest() {
+        ufosPark.dispatch(creditCard);
+        ufosPark.dispatch(creditCard);
+        assertEquals(2500, creditCard.credit(), delta);
+        assertEquals("Ovni2", ufosPark.getUfoOf("666777999"));
+        assertTrue(ufosPark.containsCard("666777999"));
+    }
+
+    @Test
+    public void dispatchNoAvaliableTest() {
+        CreditCard nonAvaliable = new CreditCard("Mortadelo", "666555444");
+        ufosPark.dispatch(creditCard);
+        ufosPark.dispatch(new CreditCard("Super Lopez", "111222333"));
+        ufosPark.dispatch(new CreditCard("Tintín", "999888777"));
+        ufosPark.dispatch(nonAvaliable);
+
+        assertEquals(3000, nonAvaliable.credit(), delta);
+        assertFalse(ufosPark.containsCard("666555444"));
+    }
+
+    @Test
     public void toStringTest() {
         String expected = "[Ovni1, Ovni2, Ovni3]";
         assertEquals(expected, ufosPark.toString());

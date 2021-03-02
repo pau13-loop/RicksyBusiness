@@ -9,6 +9,7 @@ public class CrystalExpenderTest {
 
     private CreditCard card;
     private CrystalExpender crystal;
+    private double delta = 0.01;
     
     @Before
     public void setupCrystal() {
@@ -20,7 +21,16 @@ public class CrystalExpenderTest {
     public void stockTest() {
         crystal.dispatch(card);
         crystal.dispatch(card);
+        assertEquals(2000, card.credit(), delta);
         assertEquals(8, crystal.stock());
+    }
+
+    @Test
+    public void noStockTest() {
+        CrystalExpender noCrystal = new CrystalExpender(0, 500.0);
+        noCrystal.dispatch(card);
+        assertEquals(3000, card.credit(), delta);
+        assertEquals(0, noCrystal.stock());
     }
 
     @Test
