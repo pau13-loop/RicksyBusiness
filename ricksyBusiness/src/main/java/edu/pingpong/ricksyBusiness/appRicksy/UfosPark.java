@@ -2,6 +2,7 @@ package edu.pingpong.ricksyBusiness.appRicksy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class UfosPark implements GuestDispatcher{
 
         if(this.flota.containsValue(cardNumber)) {
             for (Map.Entry<String, String> ufo : this.flota.entrySet()) {
-            if ( ufo.getValue().equals(cardNumber)) {
+            if (ufo.getValue() == cardNumber) {
                 answ = ufo.getKey();
                 break;
                 }
@@ -55,5 +56,13 @@ public class UfosPark implements GuestDispatcher{
         ArrayList<String> ufosIdList = new ArrayList<String>(this.flota.keySet());
         Collections.sort(ufosIdList);
         return ufosIdList.toString();
+    }
+
+    boolean containsCard(String cardNumber) {
+        return this.flota.containsValue(cardNumber);
+    }
+
+    Collection<String> cardNumbers() {
+        return this.flota.values();
     }
 }
