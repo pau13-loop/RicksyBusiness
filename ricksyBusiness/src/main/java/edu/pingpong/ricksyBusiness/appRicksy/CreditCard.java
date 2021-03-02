@@ -12,6 +12,13 @@ class CreditCard {
         this.number = number;
     }
 
+    boolean pay(double fee) {
+        if (this.credit > fee) {
+            this.credit -= fee;
+            return true;
+        } else {return false;}
+    }
+
     String number() {
         return this.number;
     }
