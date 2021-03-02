@@ -1,7 +1,5 @@
 package edu.pingpong.ricksyBusiness.appRicksy;
 
-import edu.pingpong.ricksyBusiness.appRicksy.*;
-
 /**
  * Ricksy Business
  * ===============
@@ -43,5 +41,45 @@ public class RicksyApp {
         System.out.println("\n" + "Tarjeta de Abradolph" + "\n" + 
                                   "===================="        );
         System.out.println(abradolph);
+
+         /**
+         * Construye el componente de reserva de Ovnis.
+         * Recibe el objeto tarjeta de crédito del invitado/a
+         * en el método dispatch(card)
+         * y realiza un cargo a la tarjeta.
+         * Si hay saldo suficiente se reserva un UberOvni
+         * de los que estén libres.
+         * El coste del ovni es de 500 EZIs.
+         */
+
+        UfosPark ufosPark = new UfosPark();
+
+        // Da de alta en la flota de ovnis 2 UFOS.
+
+        String[] ufosID = { "unx", "dox" };
+		for (String ovni : ufosID) {
+			ufosPark.add(ovni);
+        }
+        
+        // Procesamos el pago y reserva de ovni de Abradolph
+        ufosPark.dispatch(abradolph);
+
+        // Mostramos el ID del ovni asignado a Abradolph
+        System.out.println("\nOvni de Abradolph\n" + 
+                             "=================");
+        System.out.println(ufosPark.getUfoOf(abradolph.number()));
+       
+        // Mostramos el credito de la tarjeta de Abradolph
+        System.out.println("Credito de Abradolph: " + abradolph.credit());
+
+        // Abradolph quiere reservar otro ovni.
+        // El sistema detecta que ya tiene uno 
+        // e ignora la petición.
+
+        System.out.println("\nAbradolph quiere otro ovni\n" + 
+                             "==========================");
+        ufosPark.dispatch(abradolph);
+        System.out.println("Su credito no ha cambiado: " + abradolph.credit());
+        System.out.println("Ovni de Abradolph: " + ufosPark.getUfoOf(abradolph.number()));
     }
 }
