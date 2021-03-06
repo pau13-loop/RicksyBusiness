@@ -1,5 +1,8 @@
 package edu.pingpong.ricksyBusiness.appRicksy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Ricksy Business
  * ===============
@@ -219,12 +222,30 @@ public class RicksyApp {
 
          // tu código aquí
 
-        Menus menus = new Menus(100, 10);
+        // Creamos la clase Menu y la registramos en el sistema receptivo
+        Menu menu = new Menu(100, 10);
+        receptivo.registra(menu);
 
+        //Creamos una lista con los invitados que quieren consumir un menú y ejectutamos el sistema para cada uno de ellos
+        
+        List<CreditCard> customerCards = new ArrayList<>();
+        customerCards.add(abradolph);
+        customerCards.add(squanchy);
+        customerCards.add(morty);
+        customerCards.add(gearHead);
+        customerCards.add(birdpearson);
+
+        customerCards.forEach(c -> receptivo.dispatch(c));
+
+        //Printeamos el stock y la lista de la gente que ha pedido un menú
         System.out.println("\nPedidos de RickMenus:\n" + 
         "==================");
+        System.out.println(menu);
 
-        System.out.println(menus.stock());
+        System.out.println("\nCredito de los invitados:\n" + 
+        "==================");
+
+        customerCards.forEach(c -> System.out.println(c));
         
     }
 
